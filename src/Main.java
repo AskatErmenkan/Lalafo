@@ -13,6 +13,8 @@ public class Main {
         User user1 = new User(GenerateId.userId(),"Бектур","bektur@jmail.com","Bektur", Role.USER);
         u.addUser(user1);
         System.out.println(u.getUser(1L));
+u.deleteUser(1L);
+        System.out.println(u.getUser(1L));
 
     }
 

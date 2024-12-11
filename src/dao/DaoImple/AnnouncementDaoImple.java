@@ -26,13 +26,13 @@ public class AnnouncementDaoImple implements AnnouncementDao {
     }
 
     @Override
-    public String updateAnnouncement(Announcement announcement) {
+    public String updateAnnouncement(Long id,String newName) {
     for (Announcement announcement1 : DataBase.getAnnouncements()) {
-        if (announcement1.getId() == announcement.getId()) {
-            announcement1.setName( announcement1.getName());
+        if (announcement1.getId() == announcement1.getId()) {
+            announcement1.setName(newName);
+            return "Успешно жаныртылды";
 
         }
-        return "Успешно жаныртылды";
     }
         return null;
     }
@@ -44,11 +44,11 @@ public class AnnouncementDaoImple implements AnnouncementDao {
 
     @Override
     public void deleteAnnouncement(Long id) {
-//for (Announcement announcement : DataBase.getAnnouncements()) {
-//    if (announcement.getId() == id) {
-//        DataBase.getAnnouncements().remove(announcement);
-//        System.out.println("Очурулду");
-//    }
-//}
+    for (Announcement announcement : DataBase.getAnnouncements()) {
+        if (announcement.getId() == id) {
+            DataBase.getAnnouncements().remove(announcement);
+            System.out.println("очурулду");
+        }
+    }
     }
 }

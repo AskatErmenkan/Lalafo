@@ -5,6 +5,8 @@ import dao.UserDao;
 import model.User;
 import service.UserService;
 
+import java.util.List;
+
 public class UserImple implements UserService {
    private UserDaoImple userDao;
 
@@ -26,5 +28,15 @@ public class UserImple implements UserService {
     public void deleteUser(Long id) {
         userDao.deleteUser(id);
 
+    }
+
+    @Override
+    public String updateById(Long id, String newName) {
+        return userDao.updateById(id,newName);
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return userDao.getAllUsers();
     }
 }

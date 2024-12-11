@@ -4,6 +4,8 @@ import dao.UserDao;
 import dataBase.DataBase;
 import model.User;
 
+import java.util.List;
+
 public class UserDaoImple implements UserDao {
 
 
@@ -33,5 +35,21 @@ public class UserDaoImple implements UserDao {
                System.out.println("очурулду");
            }
        }
+    }
+
+    @Override
+    public String updateById(Long id, String newName) {
+        for (User user : DataBase.getUsers()) {
+            if (user.getId() == id) {
+user.setFirstName(newName);
+return "updated";
+            }
+        }
+        return "";
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return DataBase.getUsers();
     }
 }

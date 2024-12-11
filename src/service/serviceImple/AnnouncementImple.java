@@ -7,7 +7,7 @@ import service.AnnouncementService;
 import java.util.List;
 
 public class AnnouncementImple implements AnnouncementService {
-    AnnouncementDao announcementDao;
+   private AnnouncementDao announcementDao;
 
     public AnnouncementImple(AnnouncementDao announcementDao) {
         this.announcementDao = announcementDao;
@@ -24,9 +24,11 @@ public class AnnouncementImple implements AnnouncementService {
     }
 
     @Override
-    public String updateAnnouncement(Announcement announcement) {
-        return "";
+    public String updateAnnouncement(Long id, String newName) {
+        return announcementDao.updateAnnouncement(id, newName);
     }
+
+
 
     @Override
     public List<Announcement> getAllAnnouncements() {

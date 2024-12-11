@@ -52,7 +52,7 @@ private String owner;
 
     @Override
     public String toString() {
-        return "Announcement{" +
+        return "\nAnnouncement{" +
                 "id=" + id +
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +

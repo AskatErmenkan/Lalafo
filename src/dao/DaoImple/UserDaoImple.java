@@ -24,4 +24,14 @@ public class UserDaoImple implements UserDao {
         }
         return null;
     }
+
+    @Override
+    public void deleteUser(Long id) {
+        for (User user : DataBase.getUsers()) {
+           if (user.getId() == id) {
+               DataBase.getUsers().remove(user);
+               System.out.println("очурулду");
+           }
+       }
+    }
 }

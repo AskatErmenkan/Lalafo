@@ -15,22 +15,40 @@ public class AnnouncementDaoImple implements AnnouncementDao {
     }
 
     @Override
-    public void getAnnouncementbyId(Long id) {
+    public Announcement getAnnouncementbyId(Long id) {
+        for (Announcement announcement : DataBase.getAnnouncements()) {
+            if (announcement.getId() == id) {
+                return announcement;
+            };
+        }
 
+        return null;
     }
 
     @Override
-    public void updateAnnouncement(Announcement announcement) {
+    public String updateAnnouncement(Announcement announcement) {
+    for (Announcement announcement1 : DataBase.getAnnouncements()) {
+        if (announcement1.getId() == announcement.getId()) {
+            announcement1.setName( announcement1.getName());
 
+        }
+        return "Успешно жаныртылды";
+    }
+        return null;
     }
 
     @Override
     public List<Announcement> getAllAnnouncements() {
-        return List.of();
+        return DataBase.getAnnouncements();
     }
 
     @Override
-    public void deleteAnnouncement(long id) {
-
+    public void deleteAnnouncement(Long id) {
+//for (Announcement announcement : DataBase.getAnnouncements()) {
+//    if (announcement.getId() == id) {
+//        DataBase.getAnnouncements().remove(announcement);
+//        System.out.println("Очурулду");
+//    }
+//}
     }
 }

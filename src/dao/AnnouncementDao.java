@@ -7,7 +7,7 @@ import java.util.List;
 public interface AnnouncementDao {
     void addAnnouncement(Announcement announcement);
     Announcement getAnnouncementbyId(Long id);
-    String updateAnnouncement(Announcement announcement);
+    String updateAnnouncement(Long id,String newName);
     List<Announcement> getAllAnnouncements();
     void deleteAnnouncement(Long id);
 }

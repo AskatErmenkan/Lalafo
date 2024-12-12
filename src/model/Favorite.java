@@ -9,6 +9,9 @@ public class Favorite {
         this.userId = userId;
     }
 
+    public Favorite() {
+    }
+
     public Long getUserId() {
         return userId;
     }
@@ -19,7 +22,7 @@ public class Favorite {
 
     @Override
     public String toString() {
-        return "Favorite{" +
+        return "\nFavorite{" +
                 "userId=" + userId +
                 ", announcementId=" + announcementId +
                 '}';

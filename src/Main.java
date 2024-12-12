@@ -38,7 +38,7 @@ public class Main {
         Announcement announcement3 = new Announcement(GenerateId.announcementId(), "fdsg", "fgsdfg", new BigDecimal(43545), "dfgsdf");
 
         while (true) {
-
+//sdfsr
             System.out.println("1. addUser");
             System.out.println("2. getUserById");
             System.out.println("3. deleteUser");

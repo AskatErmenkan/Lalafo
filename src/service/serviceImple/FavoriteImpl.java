@@ -21,7 +21,7 @@ public class FavoriteImpl implements FavoriteService {
 
     @Override
     public String removeFavorite(Long userId, Long announcementId) {
-        return "";
+        return favoriteDao.removeFavorite(userId,announcementId);
     }
 
     @Override

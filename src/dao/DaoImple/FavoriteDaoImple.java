@@ -6,54 +6,65 @@ import model.Announcement;
 import model.Favorite;
 import model.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FavoriteDaoImple  implements FavoriteDao {
     @Override
-    public String addFavorite(Long userId, Long announcementId) {
-        // Ищем пользователя по ID
-        User user = DataBase.getUsers().stream()
-                .filter(u -> u.getId().equals(userId))
-                .findFirst()
-                .orElse(null);
-
-        // Ищем объявление по ID
-        Announcement announcement = DataBase.getAnnouncements().stream()
-                .filter(a -> a.getId()==(announcementId))
-                .findFirst()
-                .orElse(null);
-
-        // Проверяем, что пользователь и объявление существуют
-        if (user != null && announcement != null) {
-            // Создаем объект Favorite
-            Favorite favorite = new Favorite(userId, announcementId);
-
-            // Добавляем в список избранного
-            DataBase.getFavorites().add(favorite);
-            return "Favorite added ";
-        } else {
-            return "User or announcement not found";
-        }
+    public String addFavorite(Favorite favorite) {
+        DataBase.getFavorites().add(favorite);
+        return "Favorite added";
     }
 
 
     @Override
-    public String removeFavorite(Long userId, Long announcementId) {
-        Favorite favoriteToRemove = DataBase.getFavorites().stream()
-                .filter(f -> f.getUserId().equals(userId) && f.getAnnouncementId().equals(announcementId))
-                .findFirst()
-                .orElse(null);
-
-        if (favoriteToRemove != null) {
-            // Удаляем из списка
-            DataBase.getFavorites().remove(favoriteToRemove);
-            return "Favorite removed successfully";
-        } else {
-            return "Favorite not found";
-        }    }
+    public String removeFavorite(Long id) {
+        for (Favorite favorite : DataBase.getFavorites()) {
+            if (favorite.getId() == id) {
+                DataBase.getFavorites().remove(favorite);
+                return "Favorite removed";
+            }
+        }
+        return "мындай айдиде Favorite жок";
+    }
 
     @Override
     public List<Favorite> getallfavorites() {
+
         return DataBase.getFavorites();
     }
+
+    public String addUserstoFavorite(Long favoriteId, List<Long> userId) {
+        for (Favorite favorite : DataBase.getFavorites()) {
+            if (favorite.getId() == favoriteId) {
+                List<User> userscopy = new ArrayList<>(DataBase.getUsers());
+                for (User user : userscopy) {
+                    if (userId.contains(user.getId())) {
+                        favorite.getUsers().add(user);
+                    }
+                }
+                return "User added";
+            }
+
+        }
+        return null;
+    }
+
+
+    public String addannouncmenttoFavorite(Long favoriteId, List<Long> announcementId) {
+        for (Favorite favorite : DataBase.getFavorites()) {
+            if (favorite.getId() == favoriteId) {
+                List<Announcement> announcementscopy = new ArrayList<>(DataBase.getAnnouncements());
+                for (Announcement announcement : announcementscopy) {
+                    if (announcementId.contains(announcement.getId())) {
+                        favorite.getAnnouncements().add(announcement);
+                    }
+                }
+                return "Annoucment added";
+            }
+
+        }
+        return null;
+    }
+
 }

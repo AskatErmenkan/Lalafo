@@ -3,15 +3,14 @@ import dao.DaoImple.AnnouncementDaoImple;
 import dao.DaoImple.FavoriteDaoImple;
 import dao.DaoImple.UserDaoImple;
 import dataBase.DataBase;
-import model.Announcement;
-import model.GenerateId;
-import model.Role;
-import model.User;
+import model.*;
 import service.serviceImple.AnnouncementImple;
 import service.serviceImple.FavoriteImpl;
 import service.serviceImple.UserImple;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -38,7 +37,6 @@ public class Main {
         Announcement announcement3 = new Announcement(GenerateId.announcementId(), "fdsg", "fgsdfg", new BigDecimal(43545), "dfgsdf");
 
         while (true) {
-//sdfsr
             System.out.println("1. addUser");
             System.out.println("2. getUserById");
             System.out.println("3. deleteUser");
@@ -52,6 +50,8 @@ public class Main {
             System.out.println("11. addFavorite");
             System.out.println("12. deleteFavorite");
             System.out.println("13. getallfavoriten");
+            System.out.println("14. addUsertoFavorite");
+            System.out.println("15. addAnnouncementtoFavorite");
             int a = scanner.nextInt();
             switch (a) {
                 case 1: {
@@ -114,28 +114,38 @@ public class Main {
                     break;
                 }
                 case 11: {
-                    System.out.println("User айдисин жазыныз");
-                    long userid = scanner1.nextLong();
-                    System.out.println("announcment айдисин жазыныз");
-                    long anid = scanner1.nextLong();
-                    String result = f.addFavorite(userid, anid);
-                    System.out.println(result);
+                    List<User> users = new ArrayList<>();
+                    List<Announcement> announcements = new ArrayList<>();
+                    Favorite favorite = new Favorite(GenerateId.favoriteId(), users, announcements);
+                    System.out.println(f.addFavorite(favorite));
                     break;
                 }
                 case 12: {
-                    System.out.println("User айдисин жазыныз");
-                    long userid = scanner1.nextLong();
-                    System.out.println("announcment айдисин жазыныз");
-                    long anid = scanner1.nextLong();
-                    System.out.println(f.removeFavorite(userid, anid));
-
+                    System.out.println("Favorite айдисин жазыныз");
+                    long id = scanner1.nextLong();
+                    System.out.println(f.removeFavorite(id));
                     break;
                 }
                 case 13: {
                     System.out.println(f.getallfavorites());
                     break;
                 }
-
+                case 14: {
+                    System.out.println("favorite айдисин жазыныз");
+                    long id = scanner1.nextLong();
+                    System.out.println("User дин айдисин жазыныз");
+                    long idd = scanner1.nextLong();
+                    String result = f.addUserstoFavorite(id, List.of(idd));
+                    System.out.println(result);
+                    break;
+                }
+                case 15: {
+                    System.out.println("favorite айдисин жазыныз");
+                    long id = scanner1.nextLong();
+                    System.out.println("Announcmentin дин айдисин жазыныз");
+                    long idd = scanner1.nextLong();
+                    String result = f.addannouncmenttoFavorite(id, List.of(idd));
+                break;}
             }
         }
 

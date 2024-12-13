@@ -14,18 +14,30 @@ public class FavoriteImpl implements FavoriteService {
     }
 
     @Override
-    public String addFavorite(Long userId, Long announcementId) {
-       return favoriteDao.addFavorite(userId,announcementId);
+    public String addFavorite(Favorite favorite) {
+       return favoriteDao.addFavorite(favorite);
 
     }
 
     @Override
-    public String removeFavorite(Long userId, Long announcementId) {
-        return favoriteDao.removeFavorite(userId,announcementId);
+    public String removeFavorite(Long id) {
+        return favoriteDao.removeFavorite(id);
     }
 
     @Override
     public List<Favorite> getallfavorites() {
         return favoriteDao.getallfavorites();
     }
+
+    @Override
+    public String addUserstoFavorite(Long favoriteId, List<Long> userId) {
+return  favoriteDao.addUserstoFavorite(favoriteId, userId);
+    }
+
+    @Override
+    public String addannouncmenttoFavorite(Long favoriteId, List<Long> announcementId) {
+    return     favoriteDao.addannouncmenttoFavorite(favoriteId, announcementId);
+    }
+
+
 }
